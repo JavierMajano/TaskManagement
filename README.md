@@ -1,0 +1,27 @@
+<h1>Task Management App</h1>
+A full-stack web application for managing tasks built with Spring Boot, PostgreSQL, React, and Bootstrap.
+
+<h2>Features</h2>
+<ul>
+<li>User authentication and authorization using Spring Security and JWT</li>
+<li>CRUD operations on tasks with filtering and pagination</li>
+<li>Real-time task updates using WebSocket</li>
+<li>Responsive UI with Bootstrap</li>
+</ul>
+
+<h2>Setup</h2>
+<ul>
+<li>Clone the repository</li>
+<li>Create a PostgreSQL database named "task_management" and update the database credentials in src/main/resources/application.properties</li>
+<li>Run the application using Maven: mvn spring-boot:run</li>
+<li>Access the application at http://localhost:8080</li>
+</ul>
+
+
+
+
+
+![chrome_2023-03-23_21-01-15](https://user-images.githubusercontent.com/73079627/227398084-3e41fd42-f0a9-499c-bd9a-248e7ddb49ec.png)
+
+![chrome_2023-03-23_21-03-23](https://user-images.githubusercontent.com/73079627/227398100-842879e5-6790-4246-a39f-ba8d778e500d.png)
+![chrome_2023-03-23_21-03-41](https://user-images.githubusercontent.com/73079627/227398104-c689c5d3-270b-4ce5-9850-b4f3edb39fc4.png)
