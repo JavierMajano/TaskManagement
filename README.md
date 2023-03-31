@@ -9,6 +9,15 @@ A full-stack web application for managing tasks built with Spring Boot, PostgreS
 <li>Responsive UI with Bootstrap</li>
 </ul>
 
+<h2>Technologies Used</h2>
+<ul>
+<li>Spring Boot</li>
+<li>PostgreSQL</li>
+<li>React
+JavaScript
+<li>Tailwind</li>
+</ul>
+
 <h2>Setup</h2>
 <ul>
 <li>Clone the repository</li>
