@@ -23,7 +23,8 @@ JavaScript
 <li>Clone the repository</li>
 <li>Create a PostgreSQL database named "task_management" and update the database credentials in src/main/resources/application.properties</li>
 <li>Run the application using Maven: mvn spring-boot:run</li>
-<li>Access the application at http://localhost:8080</li>
+<li>Access the application at http://localhost:3000</li>
+ <li>Start the React app using npm start</li>
 </ul>
 
 
