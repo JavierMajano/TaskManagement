@@ -41,9 +41,9 @@ let resetComplete = (e) =>{
         })
 }
         return(
-            <div className="relative overflow-x-auto bg-lime-200 h-screen w-full">
+            <div className="relative overflow-x-auto bg-teal-200 h-screen w-full">
                 <div className="text-center text-black mt-20" ><h2 className="text-3xl font-bold">Completed Task</h2></div>
-                <div className="text-center text-black mt-20" ><button onClick={()=>(resetComplete())} className="flex-no-shrink p-2 ml-2 border-2 rounded text-red bg-red-400 hover:text-white">Reset</button></div>
+                <div className="text-center text-black mt-20" ><button onClick={()=>(resetComplete())} className="flex-no-shrink p-2 ml-2 border-2 rounded text-red border-red-400 bg-red-400 hover:text-white">Reset</button></div>
                 <div className="rounded-xl ">
                     <table className="w-5/6 text-sm text-center text-white dark:text-gray-400 mx-auto pt-6 mt-20 table-auto">
                         <thead className="text-xs text-white uppercase  bg-violet-400">

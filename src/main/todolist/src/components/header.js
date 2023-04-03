@@ -6,10 +6,50 @@ import TaskManage from "./TaskManage";
 import SMSReminder from "./SMSReminder";
 import Login from "./login";
 import Signup from "./Signup";
+import axios from "axios";
 
+const axiosInstance = axios.create({
+    baseURL: 'http://localhost:8080/',
+    headers:{
+        Authorization : `Bearer ${localStorage.getItem("jwtToken")}`
+    }
+});
 
-export default function Header(){
+class Header extends React.Component{
+    constructor(props) {
+        super(props);
+        this.state={
+            isLoggedIn:false,
+            username:"",
+        }
+        this.handleLogin = this.handleLogin.bind(this);
 
+    }
+    componentDidMount() {
+        // Check if user is already logged in by checking local storage for JWT token
+        const token = localStorage.getItem("jwtToken");
+        if (token) {
+            this.setState({ isLoggedIn: true });
+            // Make a request to the server to get the user's username
+            axiosInstance.get("/api/authenticate")
+                .then(res => {
+                    console.log(res.data)
+                    this.setState({username:res.data})
+                })
+                .catch(error => {
+                    console.log(error)
+                })
+        }
+    }
+    handleLogin(username) {
+        this.setState({
+            isLoggedIn: true,
+            username: username,
+        });
+    }
+render() {
+
+    const { isLoggedIn, username } = this.state;
     return(
 <div>
     <BrowserRouter>
@@ -17,11 +57,39 @@ export default function Header(){
   <div className="container flex flex-wrap  items-center justify-between mx-auto">
 
       <div className="flex md:order-2">
-         <NavLink to="/Login"> <button type="button" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-3 md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Login</button></NavLink>
-    <button data-collapse-toggle="navbar-solid-bg" type="button" className="inline-flex items-center p-2 ml-3 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-solid-bg" aria-expanded="false">
-      <span className="sr-only">Open main menu</span>
-      <svg className="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"></path></svg>
-    </button>
+          {!isLoggedIn && (<NavLink to="/Login"><button type="button" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-3 md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                      Login
+                  </button>
+              </NavLink>
+          )}
+          {isLoggedIn && (
+              <div className="text-sm text-gray-500 mr-3 text-white">
+                 Logged in as {username}
+                  <button className="flex-no-shrink p-2 ml-2 border-2 rounded text-white border-red-400 bg-red-400">Sign Out</button>
+              </div>
+          )}
+          <button
+              data-collapse-toggle="navbar-solid-bg"
+              type="button"
+              className="inline-flex items-center p-2 ml-3 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+              aria-controls="navbar-solid-bg"
+              aria-expanded="false"
+          >
+              <span className="sr-only">Open main menu</span>
+              <svg
+                  className="w-6 h-6"
+                  aria-hidden="true"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
+              >
+                  <path
+                      fillRule="evenodd"
+                      d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
+                      clipRule="evenodd"
+                  ></path>
+              </svg>
+          </button>
       </div>
     <div className="items-center hidden w-full md:block md:w-auto" id="navbar-solid-bg">
       <ul className="flex flex-col mt-4 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-transparent dark:bg-gray-800 md:dark:bg-transparent dark:border-gray-700">
@@ -57,4 +125,6 @@ export default function Header(){
 </div>
 
     );
+}
     }
+    export default Header;

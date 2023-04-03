@@ -59,9 +59,12 @@ public class credentials {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         }
     }
-    @RequestMapping(value = "/authenticate", method = RequestMethod.OPTIONS)
-    public ResponseEntity<?> handleOptionsRequest() {
-        return ResponseEntity.ok().build();
+    @RequestMapping(value = "/authenticate", method = RequestMethod.GET)
+    public ResponseEntity<?> handleOptionsRequest(@RequestHeader("Authorization") String authorizationHeader) {
+        String username = jwtProvider.extractUsername(authorizationHeader.substring(7));
+
+
+        return ResponseEntity.ok(username);
     }
 
 
