@@ -64,7 +64,7 @@ render() {
           )}
           {isLoggedIn && (
               <div className="text-sm text-gray-500 mr-3 text-white">
-                 Logged in as {username}
+                 Welcome, {username}
                   <button className="flex-no-shrink p-2 ml-2 border-2 rounded text-white border-red-400 bg-red-400">Sign Out</button>
               </div>
           )}

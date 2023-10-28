@@ -94,7 +94,7 @@ class TaskManage extends React.Component{
                     <tbody>
                     {this.state.allTask.map((task,index) => (
                         <tr className=" border-b text-white dark:bg-gray-800 dark:border-gray-700" key={task.id}>
-                            <td className="px-6 py-4">{task.id}</td>
+                            <td className="px-6 py-4">{index+1}</td>
                             <td className="px-6 py-4">{task.name}</td>
                             <td className="px-6 py-4">{ new Date(task.date).toDateString()}</td>
                             <td><button onClick={() => completeTasks(task.id,index)} className="flex-no-shrink p-2 ml-4 mr-2 border-2 rounded hover:text-white text-green border-teal-400 hover:bg-teal-400">Done</button></td>
